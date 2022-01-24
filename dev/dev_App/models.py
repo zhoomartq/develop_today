@@ -1,5 +1,8 @@
 from django.db import IntegrityError, models
 from django.utils import timezone
+from django.utils.timezone import now
+from datetime import timedelta
+
 
 
 
@@ -37,8 +40,23 @@ class Vote(models.Model):
         else:
             raise IntegrityError
 
+
+    @property
+    def deletes(self):
+        time = self.created_at + timedelta(hours=24)
+        query = Vote.objects.get(pk=self.pk)
+        
+        while True:
+           if time > now():
+              query.delete()
+              break    
+
+
     def __str__(self):
         return self.post.title
+
+
+    
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
