@@ -43,7 +43,7 @@ class Vote(models.Model):
 
     @property
     def deletes(self):
-        time = self.created_at + timedelta(hours=24)
+        time = self.created_at + timedelta(days=1)
         query = Vote.objects.get(pk=self.pk)
         
         while True:
