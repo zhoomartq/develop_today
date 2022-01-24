@@ -23,6 +23,8 @@ class Post(models.Model):
 
 class Vote(models.Model):
     post = models.ForeignKey(Post, related_name='votes', on_delete=models.CASCADE)
+    creation_date = models.DateTimeField(default=timezone.now)
+
 
     def save(self, commit=True, *args, **kwargs):
 
@@ -43,7 +45,7 @@ class Vote(models.Model):
 
     @property
     def deletes(self):
-        time = self.created_at + timedelta(days=1)
+        time = self.post.creation_date + timedelta(days=1)
         query = Vote.objects.get(pk=self.pk)
         
         while True:
