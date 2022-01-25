@@ -4,9 +4,6 @@ from django.utils.timezone import now
 from datetime import timedelta
 
 
-
-
-
 class Post(models.Model):
     title = models.CharField(max_length=155)
     url = models.URLField()
@@ -24,7 +21,6 @@ class Post(models.Model):
 class Vote(models.Model):
     post = models.ForeignKey(Post, related_name='votes', on_delete=models.CASCADE)
     creation_date = models.DateTimeField(default=timezone.now)
-
 
     def save(self, commit=True, *args, **kwargs):
 

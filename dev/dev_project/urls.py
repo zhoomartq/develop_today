@@ -22,7 +22,7 @@ from rest_framework import permissions
 
 from rest_framework.routers import DefaultRouter
 
-from dev_App.views import *
+from dev_App.views import PostViewSet, CommentViewSet, CastVoteView
 
 router = DefaultRouter()
 router.register('post', PostViewSet),
