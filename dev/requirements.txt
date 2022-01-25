@@ -4,3 +4,4 @@ djangorestframework==3.12.4
 drf-yasg==1.20.0
 python-decouple==3.4
 votes==1.0.1
+flake8==4.0.1
